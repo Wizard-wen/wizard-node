@@ -1,0 +1,12 @@
+
+
+
+
+message ColumnResponse {
+    required Column column  = 1;
+    required Cloumn recommondColumns = 2;
+}
+
+message ColumnRequest {
+    required int32 columnid = 1;
+}

@@ -1,0 +1,27 @@
+const Koa = require('koa')
+const mount = require('koa-mount')
+const static = require('koa-static')
+const fs = require('fs')
+
+
+const app = new Koa()
+
+app.use(
+    static(__dirname + '/source/')
+)
+
+app.use(
+    mount('/', async (ctx) =>{
+        ctx.body = fs.readFileSync(__dirname + '/source/index.html', 'utf-8')
+    })
+)
+
+// app.listen(3000)
+
+const rpcClient = require('./client')
+
+rpcClient.write({
+    columnid: 24,
+}, function(err, data){
+    console.log(err, data)
+})
